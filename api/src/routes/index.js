@@ -8,7 +8,7 @@ const {
 const router = Router();
 router.get("/dogs", getDogs);
 router.get("/dogs/:idRaza", getDogById);
-router.get("/dogs/", getDogByName);
+// router.get("/dogs", getDogByName);
 router.post("/dogs/", postDogs);
 router.get("/temperaments", getTemperaments);
 // Configurar los routers

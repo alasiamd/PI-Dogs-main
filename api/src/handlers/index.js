@@ -1,6 +1,6 @@
 const handlerGetTemperaments = require("./handlerGetTemperaments");
 const handlerGetDogs = require("./handlerGetDogs");
-handlerPostDogs = require('./handlerPostDogs')
+const handlerPostDogs = require('./handlerPostDogs')
 
 
 module.exports = {
