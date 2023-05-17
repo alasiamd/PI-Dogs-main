@@ -1,8 +1,10 @@
 const { Temperament } = require('../db');
 
 const handlerGetTemperaments = async (temperament) => {
-    const newTemperament = await Temperament.create({
-        name: temperament
+    const newTemperament = await Temperament.findOrCreate({
+        where:{
+            name: temperament
+        }
     })
 }
 
