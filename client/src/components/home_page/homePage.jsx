@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import styles from './homePage.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { all } from '../../reducer/action';
+import Card from '../card/card'
 
 const HomePage = () => {   
   const dispatch = useDispatch();
@@ -13,7 +14,18 @@ const HomePage = () => {
   console.log(allReg);
   return (
     <div className={styles.card}>
-      Home page component
+      {allReg.map(({ id, image, life_span, name, temperament, weight, height }) => <Card 
+        id = {id}
+        key = {id}
+        image = {image}
+        life_span = {life_span}
+        name = {name}
+        temperament = {temperament}
+        weight = {weight}
+        height = {height}
+      />)}
+      
+
     </div>
   );
 };
