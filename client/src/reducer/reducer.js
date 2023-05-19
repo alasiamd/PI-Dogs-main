@@ -10,6 +10,9 @@ const reducer = (state = initialState, {type, payload}) => {
         case ALL:
             return { ...state, all: payload }
 
+        case SEARCHID:
+            return { ...state, searchId: payload }
+
         default:
             return { ...state };
     }

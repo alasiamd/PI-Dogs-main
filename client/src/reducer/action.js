@@ -16,3 +16,17 @@ export const all = () => {
         }
     }
 }
+
+export const searchId = (id) => {
+    return async (dispatch) => {
+        try {
+            const {data} = await axios.get(`${endpoint}/dogs/${id}`);
+            return dispatch({
+                type: SEARCHID,
+                payload: data
+            });
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+}
