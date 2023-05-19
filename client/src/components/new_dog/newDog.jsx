@@ -7,7 +7,7 @@ const NewDog = () => {
 
   return (
     <div className={styles.card}>
-      {/* Contenido del componente */}
+      New dog component
     </div>
   );
 };

@@ -7,7 +7,7 @@ const Card = () => {
 
   return (
     <div className={styles.card}>
-      {/* Contenido del componente */}
+      Card component
     </div>
   );
 };

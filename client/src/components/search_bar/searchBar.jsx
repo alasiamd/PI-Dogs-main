@@ -7,7 +7,7 @@ const SearchBar = () => {
 
   return (
     <div className={styles.card}>
-      {/* Contenido del componente */}
+      Search component
     </div>
   );
 };

@@ -7,7 +7,7 @@ const Details = () => {
 
   return (
     <div className={styles.card}>
-      {/* Contenido del componente */}
+      Details component
     </div>
   );
 };

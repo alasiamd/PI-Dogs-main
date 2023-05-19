@@ -7,7 +7,7 @@ const LandingPage = () => {
 
   return (
     <div className={styles.card}>
-      {/* Contenido del componente */}
+      Landing page component
     </div>
   );
 };
