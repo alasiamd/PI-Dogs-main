@@ -1,8 +1,10 @@
-import { SEARCH, SEARCHID, ALL } from "./types";
+import { SEARCH, SEARCHID, ALL, TEMPERAMENTS, CREATEDOGS } from "./types";
 const initialState = {
     search: [],
     searchId: [],
-    all: []
+    all: [],
+    temperaments: [],
+    createDogs: []
 };
 
 const reducer = (state = initialState, {type, payload}) => {
@@ -12,6 +14,12 @@ const reducer = (state = initialState, {type, payload}) => {
 
         case SEARCHID:
             return { ...state, searchId: payload }
+
+        case TEMPERAMENTS:
+            return {...state, temperaments: payload}
+
+        case CREATEDOGS:
+            return {...state, createDogs: payload}
 
         default:
             return { ...state };

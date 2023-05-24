@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SEARCH, SEARCHID, ALL } from "./types";
+import { SEARCH, SEARCHID, ALL, TEMPERAMENTS, CREATEDOGS } from "./types";
 
 const endpoint = 'http://localhost:3001';
 
@@ -17,6 +17,21 @@ export const all = () => {
     }
 }
 
+export const temperaments = () => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.get(`${endpoint}/temperaments`);
+            return dispatch({
+                type: TEMPERAMENTS,
+                payload: data
+            })
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+}
+
+
 export const searchId = (id) => {
     return async (dispatch) => {
         try {
@@ -27,6 +42,20 @@ export const searchId = (id) => {
             });
         } catch (error) {
             console.log(error.message);
+        }
+    }
+}
+
+export const createDogs = (bodyDog) => {
+    return async (dispatch) => {
+        try {
+            const {data} = await axios.post(`${endpoint}/dogs/`, bodyDog);
+            return dispatch({
+                type: CREATEDOGS,
+                payload: data
+            });
+        } catch (error) {
+            
         }
     }
 }
