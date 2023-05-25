@@ -1,0 +1,33 @@
+.content {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 700px;
+    padding: 20px;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  button {
+    background: none;
+    border: none;
+    padding: 5px 10px;
+    margin: 0 5px;
+    font-size: 16px;
+    color: #007bff;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    text-decoration: underline;
+  }
+  
+  .activePage {
+    font-weight: bold;
+  }
