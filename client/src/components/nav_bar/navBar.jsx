@@ -1,10 +1,26 @@
 import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import styles from './navBar.module.css';
 import logo from '../../assets/logo.jpeg';
+import { orderCards } from '../../reducer/action';
 
 const NavBar = () => {
   const location = useLocation();
+  const dispatch = useDispatch();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    
+    switch (name) {
+      case "order":
+        return dispatch(orderCards(value));
+            
+      default:
+        break;
+    }
+
+  }
 
   if (location.pathname === '/home' || location.pathname === '/new') {
     return (
@@ -18,7 +34,7 @@ const NavBar = () => {
             <option value="">Filtrar por temperamento</option>
             {/* Opciones del select */}
           </select>
-          <select className={styles.select}>
+          <select name='order' onChange={handleChange} className={styles.select}>
             <option value="asc">Ordenar A-Z</option>
             <option value="desc">Ordenar Z-A</option>
           </select>
