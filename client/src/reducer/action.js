@@ -6,6 +6,7 @@ import {
   TEMPERAMENTS,
   CREATEDOGS,
   ORDER,
+  FILTER_OLD_NEW,
 } from "./types";
 
 const endpoint = "http://localhost:3001";
@@ -68,5 +69,12 @@ export function orderCards(order) {
   return {
     type: ORDER,
     payload: order,
+  };
+}
+
+export function filterOldNew(oldNew) {
+  return {
+    type: FILTER_OLD_NEW,
+    payload: oldNew,
   };
 }

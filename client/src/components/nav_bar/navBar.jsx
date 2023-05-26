@@ -3,7 +3,7 @@ import { useLocation, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import styles from './navBar.module.css';
 import logo from '../../assets/logo.jpeg';
-import { orderCards } from '../../reducer/action';
+import { orderCards, filterOldNew } from '../../reducer/action';
 
 const NavBar = () => {
   const location = useLocation();
@@ -15,6 +15,9 @@ const NavBar = () => {
     switch (name) {
       case "order":
         return dispatch(orderCards(value));
+
+      case "oldNew":
+        return dispatch(filterOldNew(value));
             
       default:
         break;
@@ -38,9 +41,10 @@ const NavBar = () => {
             <option value="asc">Ordenar A-Z</option>
             <option value="desc">Ordenar Z-A</option>
           </select>
-          <select className={styles.select}>
+          <select name='oldNew' onChange={handleChange} className={styles.select}>
             <option value="all">Todos</option>
             <option value="new">Nuevos</option>
+            <option value="old">Viejos</option>
           </select>
           <Link to="/new" className={styles.link}>
             Agregar nueva raza

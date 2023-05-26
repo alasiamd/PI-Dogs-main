@@ -1,27 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import styles from './homePage.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { all } from '../../reducer/action';
+import { all, filterOldNew, orderCards } from '../../reducer/action';
 import Card from '../card/card'
-import { ALL } from '../../reducer/types';
+// import { ALL } from '../../reducer/types';
 
 const HomePage = () => {   
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
   const [currentCards, setCurrenCards] = useState([]);
 
-  const allReg = useSelector(state => state.all);
+  const allReg = useSelector(state => state.filtered);
   const cardsPerPage = 8;
 
   useEffect(() => {
     dispatch(all())
-  },[])
+  },[dispatch])
 
+  
   useEffect(() => {
     const indexOfLastCard = currentPage * cardsPerPage;
     const indexOfFirstCard = indexOfLastCard - cardsPerPage;
     const currentCards = allReg.slice(indexOfFirstCard, indexOfLastCard);
     setCurrenCards(currentCards);
+    console.log(currentCards);
   }, [currentPage, allReg])
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
