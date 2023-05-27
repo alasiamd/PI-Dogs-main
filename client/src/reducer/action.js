@@ -54,6 +54,23 @@ export const searchId = (id) => {
   };
 };
 
+export const searchName = (name) => {
+  return function (dispatch) {
+    return axios
+      .get(`${endpoint}/dogs/?search=${name}`)
+      .then(({ data }) => {
+        console.log(data);
+        dispatch({
+          type: SEARCH,
+          payload: data,
+        });
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+};
+
 export const createDogs = (bodyDog) => {
   return async (dispatch) => {
     try {

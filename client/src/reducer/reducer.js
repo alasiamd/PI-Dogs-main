@@ -26,6 +26,9 @@ const reducer = (state = initialState, { type, payload }) => {
     case SEARCHID:
       return { ...state, searchId: payload };
 
+    case SEARCH:
+      return { ...state, search: payload, filtered: payload };
+
     case TEMPERAMENTS:
       return { ...state, temperaments: payload };
 

@@ -3,7 +3,7 @@ import { useLocation, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './navBar.module.css';
 import logo from '../../assets/logo.jpeg';
-import { orderCards, filterOldNew, temperaments, filterTemperament } from '../../reducer/action';
+import { orderCards, filterOldNew, temperaments, filterTemperament, searchName } from '../../reducer/action';
 
 
 const NavBar = () => {
@@ -26,7 +26,12 @@ const NavBar = () => {
         return dispatch(filterOldNew(value));
       
       case "temperament":
-        return dispatch(filterTemperament(value))
+        return dispatch(filterTemperament(value));
+
+      case "search":
+        if (value.length > 2) {
+          return dispatch(searchName(value));
+        }
             
       default:
         break;
@@ -41,7 +46,7 @@ const NavBar = () => {
           <img src={logo} alt="Logo" className={styles.logoImage} />
         </div>
         <nav className={styles.navbar}>
-          <input type="text" placeholder="Buscar" className={styles.searchInput} />
+          <input name='search' onChange={handleChange} type="text" placeholder="Buscar" className={styles.searchInput} />
           <select name='temperament' onChange={handleChange} className={styles.select}>
             <option value="">Filtrar por temperamento</option>
             { allTemperaments.map((temperament, index) => (
