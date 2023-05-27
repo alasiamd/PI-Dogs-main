@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './navBar.module.css';
 import logo from '../../assets/logo.jpeg';
-import { orderCards, filterOldNew } from '../../reducer/action';
+import { orderCards, filterOldNew, temperaments, filterTemperament } from '../../reducer/action';
+
 
 const NavBar = () => {
   const location = useLocation();
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(temperaments())
+  }, [])
+
+  const allTemperaments = useSelector(state => state.temperaments);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -18,6 +24,9 @@ const NavBar = () => {
 
       case "oldNew":
         return dispatch(filterOldNew(value));
+      
+      case "temperament":
+        return dispatch(filterTemperament(value))
             
       default:
         break;
@@ -33,9 +42,13 @@ const NavBar = () => {
         </div>
         <nav className={styles.navbar}>
           <input type="text" placeholder="Buscar" className={styles.searchInput} />
-          <select className={styles.select}>
+          <select name='temperament' onChange={handleChange} className={styles.select}>
             <option value="">Filtrar por temperamento</option>
-            {/* Opciones del select */}
+            { allTemperaments.map((temperament, index) => (
+              <option key={index} value={temperament}>
+                {temperament}
+              </option>
+            )) }
           </select>
           <select name='order' onChange={handleChange} className={styles.select}>
             <option value="asc">Ordenar A-Z</option>

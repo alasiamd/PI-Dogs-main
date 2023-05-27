@@ -7,6 +7,7 @@ import {
   CREATEDOGS,
   ORDER,
   FILTER_OLD_NEW,
+  FILTER_TEMPERAMENT,
 } from "./types";
 
 const endpoint = "http://localhost:3001";
@@ -76,5 +77,12 @@ export function filterOldNew(oldNew) {
   return {
     type: FILTER_OLD_NEW,
     payload: oldNew,
+  };
+}
+
+export function filterTemperament(temperament) {
+  return {
+    type: FILTER_TEMPERAMENT,
+    payload: temperament,
   };
 }

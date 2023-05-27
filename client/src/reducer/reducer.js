@@ -1,4 +1,4 @@
-import { filterOldNew } from "./action";
+// import { filterOldNew } from "./action";
 import {
   SEARCH,
   SEARCHID,
@@ -7,6 +7,7 @@ import {
   CREATEDOGS,
   ORDER,
   FILTER_OLD_NEW,
+  FILTER_TEMPERAMENT,
 } from "./types";
 const initialState = {
   search: [],
@@ -56,22 +57,15 @@ const reducer = (state = initialState, { type, payload }) => {
       } else {
         filterOldNew = state.all;
       }
-      return { ...state, filtered: filterOldNew }; // Actualizar el estado 'filtered' en lugar de 'all'
+      return { ...state, filtered: filterOldNew };
 
-    // const filterOldNew = [];
-    // filterOldNew = [...state.all].filter((dog) => {
-    //   if (payload === "new") {
-    //     if (dog.createdInDb) {
-    //       return dog;
-    //     }
-    //   } else if (payload === "old") {
-    //     if (!dog.createdInDb) {
-    //       return dog;
-    //     }
-    //   }
-    //   return 0;
-    // });
-    // return { ...state, all: filterOldNew };
+    case FILTER_TEMPERAMENT:
+      const temperamentFilter = [...state.all].filter((dog) => {
+        return (
+          dog.temperament !== undefined && dog.temperament.includes(payload)
+        );
+      });
+      return { ...state, filtered: temperamentFilter };
 
     default:
       return { ...state };
