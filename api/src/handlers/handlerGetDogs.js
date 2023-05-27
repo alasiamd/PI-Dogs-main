@@ -10,7 +10,6 @@ const getApi = async () => {
       id: element.id,
       image: element.image.url,
       name: element.name,
-      temperament: element.temperament,
       weight: element.weight.metric,
       height: element.height.metric,
       life_span: element.life_span,
@@ -22,7 +21,7 @@ const getApi = async () => {
 };
 
 const getDB = async () => {
-  return await Dog.findAll({
+  const data = await Dog.findAll({
     include: {
       model: Temperament,
       attributes: ["name"],
@@ -31,6 +30,20 @@ const getDB = async () => {
       },
     },
   });
+  const value = data.map((element) => {
+    const temperaments = element.temperaments.map((t) => t.name);
+    return {
+      id: element.id,
+      image: element.image,
+      name: element.name,
+      weight: element.weight.metric,
+      height: element.height.metric,
+      life_span: element.life_span,
+      temperament: temperaments.join(", "),
+      createdInDb: true,
+    };
+  });
+  return value;
 };
 
 const handlerGetDogs = async () => {
