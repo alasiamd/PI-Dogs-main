@@ -36,7 +36,7 @@
     font-size: 14px; /* Ajusta el tamaño de fuente según tus necesidades */
   }
   
-  button {
+  .button {
     padding: 8px 16px;
     background-color: #f44336;
     color: white;
