@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './card.module.css';
 
-const Card = ({ id, image, life_span, name, temperament, weight, height }) => {
+const Card = ({ id, image, life_span, name, temperament, weight, height, fromDetails }) => {
+  const cardClassName = fromDetails ? styles.cardDetails : styles.cardHome;
+  const buttonClassName = fromDetails ? styles.buttonDetails : styles.buttonHome;
+  const imageClassName = fromDetails ? styles.imageContainerDetails : styles.imageContainerHome;
+  const location = useLocation();
+
   const [errorImg, setErrorImg] = useState(false);
   const [ errorImg2, setErrorImg2 ] = useState(false);
   const imgURL = "https://cdn2.thedogapi.com/images/";
@@ -28,19 +33,29 @@ const Card = ({ id, image, life_span, name, temperament, weight, height }) => {
 
   return (
     // `${imgURL}${dogId.reference_image_id}.jpg`
-    <div className={styles.card}>
-      <div className={styles.imageContainer}>
+    <div className={`${cardClassName}`}>
+      
+      <div className={`${imageClassName}`}>
         {imagen() }
       </div>
       <h2>{name}</h2>
       <p>Life Span: {life_span}</p>
       <p>Temperament: {temperament}</p>
       <p>Weight: {weight}</p>
-      <p>Height: {height}</p>
-      <Link to={`/details/${id}`} className={styles.button} >
-        View Details
-      </Link>
-      {/* <button>View Details</button> */}
+      <p>Height: {height}</p> 
+      {
+        location.pathname === '/home' ? (
+          <Link to={`/details/${id}`} className={`${styles.button} ${buttonClassName}`} >
+            View Details
+          </Link>
+        ) : (
+          <Link to={`/home`} className={`${styles.button} ${buttonClassName}`} >
+            Back to Home
+          </Link>
+        )
+      }
+      
+      
     </div>
   );
 };

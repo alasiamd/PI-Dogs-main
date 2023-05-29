@@ -50,6 +50,7 @@ const HomePage = () => {
             temperament={temperament}
             weight={weight}
             height={height}
+            fromDetails={false}
           />
         ))}
     </div>

@@ -29,6 +29,7 @@ const dogId = useSelector(state => state.searchId);
             temperament={dogId.temperament}
             weight={dogId.weight}
             height={dogId.height}
+            fromDetails={true}
           />
     </div>
   );
