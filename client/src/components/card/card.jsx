@@ -30,19 +30,20 @@ const Card = ({ id, image, life_span, name, temperament, weight, height, fromDet
       return <img src={`${imgURL}${image}.png`} alt={name} className={styles.image} />
     }
   }
-
+  console.log(temperament);
   return (
     // `${imgURL}${dogId.reference_image_id}.jpg`
     <div className={`${cardClassName}`}>
-      
-      <div className={`${imageClassName}`}>
-        {imagen() }
-      </div>
-      <h2>{name}</h2>
-      <p>Life Span: {life_span}</p>
-      <p>Temperament: {temperament}</p>
-      <p>Weight: {weight}</p>
-      <p>Height: {height}</p> 
+      {/* <div className={styles.cardContent}> */}
+        <h2>{name}</h2>
+        <div className={`${imageClassName}`}>
+          {imagen() }
+        </div>
+      {/* </div> */}
+      <p> <b>Life Span: </b> {life_span}</p>
+      <p><b>Temperament:</b> {temperament}</p>
+      <p><b>Weight:</b> {weight}</p>
+      <p><b>Height:</b> {height}</p> 
       {
         location.pathname === '/home' ? (
           <Link to={`/details/${id}`} className={`${styles.button} ${buttonClassName}`} >

@@ -13,16 +13,13 @@ const Details = () => {
     dispatch(searchId(id))
   }, [dispatch, id]);
 
- 
-
-
 const dogId = useSelector(state => state.searchId);
   console.log(dogId)
   return (
     <div className={styles.card}>
       <Card
             id={dogId.id}
-            key={dogId.id}
+            // key={dogId.id}
             image={dogId.reference_image_id}
             life_span={dogId.life_span}
             name={dogId.name}

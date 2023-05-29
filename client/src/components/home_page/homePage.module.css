@@ -7,6 +7,12 @@
     max-width: 700px;
     padding: 20px;
   }
+
+  .cardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
   
   .pagination {
     display: flex;
