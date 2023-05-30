@@ -13,6 +13,7 @@ const NewDog = () => {
 
   const allTemperaments = useSelector(state => state.temperaments);  
   const [selectedTemperaments, setSelectedTemperaments] = useState([]);
+  const [access, setAccess] = useState(false);
   const [errors, setErrors] = useState({
     name : "",
     image : "",
@@ -61,17 +62,7 @@ const NewDog = () => {
     
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const dogCreated = {
-      name : dog.name,      
-      height : `${dog.minHeight} - ${dog.maxHeight}`,
-      weight: `${dog.minWeight} - ${dog.maxWeight}`,
-      life_span : `${dog.minLife} - ${dog.maxLife}`,
-      temperament : selectedTemperaments
-  }
-    console.log(dogCreated)
-    dispatch(createDogs(dogCreated));
+  const reset = () => {
     setDog({
       name : "",
       image : "",
@@ -82,7 +73,30 @@ const NewDog = () => {
       minLife : "",
       maxLife : "",
       temperament : []
-    })
+    });
+    setSelectedTemperaments([]);
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const dogCreated = {
+      name : dog.name,      
+      height : `${dog.minHeight} - ${dog.maxHeight}`,
+      weight: `${dog.minWeight} - ${dog.maxWeight}`,
+      life_span : `${dog.minLife} - ${dog.maxLife}`,
+      image: dog.image,
+      temperament : selectedTemperaments
+  }
+    const cantErrors = Object.values(errors).length;
+    if (cantErrors === 0) {
+      dispatch(createDogs(dogCreated));
+      reset();
+
+    }
+    else {
+      alert("Aun no puedes enviar la informacion");
+    }
+    console.log(dogCreated)
   }
 
 
@@ -96,6 +110,12 @@ const NewDog = () => {
                  value={dog.name}
                  onChange={handelInputChange} />
           <span>{ errors.name } </span>
+          <label htmlFor="image">Image</label>
+          <input type="text" 
+                 name='image'
+                 value={dog.image}
+                 onChange={handelInputChange} />
+          <span>{ errors.image } </span>
           <label htmlFor="life">Life Span</label>  
           <input type="number" 
                  name='minLife'
