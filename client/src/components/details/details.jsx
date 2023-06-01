@@ -14,13 +14,14 @@ const Details = () => {
   }, [dispatch, id]);
 
 const dogId = useSelector(state => state.searchId);
-  console.log(dogId)
+console.log(dogId);
+const imagen = dogId.createdInDb ? dogId.image : dogId.reference_image_id;
   return (
     <div className={styles.card}>
       <Card
             id={dogId.id}
             // key={dogId.id}
-            image={dogId.reference_image_id}
+            image={imagen}
             life_span={dogId.life_span}
             name={dogId.name}
             temperament={dogId.temperament}
@@ -28,8 +29,10 @@ const dogId = useSelector(state => state.searchId);
             height={dogId.height}
             fromDetails={true}
           />
+          
     </div>
   );
+  
 };
 
 export default Details;

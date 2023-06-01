@@ -7,16 +7,16 @@ const getDogById = async (req, res) => {
   try {
     const { idRaza } = req.params;
     const { data } = await axios.get(`${ENDPOINT}`);
-    let finded = data.find(element => element.id == idRaza )
-    
+    let finded = data.find((element) => element.id == idRaza);
+
     if (finded === undefined) {
-       finded = await handlerDBId(idRaza)
-       if (finded.length === 0) {
-        return res.status(404).send({ message: "Perro no encontrado" })
-       } 
-       return res.status(200).json(finded)
+      finded = await handlerDBId(idRaza);
+      if (finded.length === 0) {
+        return res.status(404).send({ message: "Perro no encontrado" });
+      }
+      console.log(finded);
+      return res.status(200).json(finded);
     }
-    console.log(finded);
     const {
       id,
       reference_image_id,

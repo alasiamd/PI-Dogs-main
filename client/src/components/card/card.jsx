@@ -3,6 +3,8 @@ import { Link, useLocation } from 'react-router-dom';
 import styles from './card.module.css';
 
 const Card = ({ id, image, life_span, name, temperament, weight, height, fromDetails }) => {
+  // console.log(image);
+
   const cardClassName = fromDetails ? styles.cardDetails : styles.cardHome;
   const buttonClassName = fromDetails ? styles.buttonDetails : styles.buttonHome;
   const imageClassName = fromDetails ? styles.imageContainerDetails : styles.imageContainerHome;
@@ -19,7 +21,6 @@ const Card = ({ id, image, life_span, name, temperament, weight, height, fromDet
   const handleImgError2 = () => {
     setErrorImg2(true);
   }
-
   const imagen = () => {
     if (!errorImg2) {
       return <img src={image} alt={name} className={styles.image} onError={handleImgError2}/>
@@ -30,7 +31,7 @@ const Card = ({ id, image, life_span, name, temperament, weight, height, fromDet
       return <img src={`${imgURL}${image}.png`} alt={name} className={styles.image} />
     }
   }
-  console.log(temperament);
+
   return (
     // `${imgURL}${dogId.reference_image_id}.jpg`
     <div className={`${cardClassName}`}>

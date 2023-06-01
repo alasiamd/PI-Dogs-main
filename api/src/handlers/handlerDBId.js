@@ -17,14 +17,14 @@ const handlerDBId = async (id) => {
       id: element.id,
       image: element.image,
       name: element.name,
-      weight: element.weight.metric,
-      height: element.height.metric,
+      weight: element.weight,
+      height: element.height,
       life_span: element.life_span,
       temperament: temperaments.join(", "),
       createdInDb: true,
     };
   });
-  return value;
+  return value[0];
 };
 
 module.exports = handlerDBId;
