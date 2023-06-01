@@ -13,7 +13,7 @@ const NewDog = () => {
 
   const allTemperaments = useSelector(state => state.temperaments);  
   const [selectedTemperaments, setSelectedTemperaments] = useState([]);
-  const [access, setAccess] = useState(false);
+  // const [access, setAccess] = useState(false);
   const [errors, setErrors] = useState({
     name : "",
     image : "",
@@ -101,80 +101,93 @@ const NewDog = () => {
 
 
   return (
-    <div className={styles.card}>
+    <div className={styles.main}>
       <form onSubmit={handleSubmit}>
         <div className={styles.content}>
-          <label htmlFor="name">Name</label>
-          <input type="text" 
-                 name='name'
-                 value={dog.name}
-                 onChange={handelInputChange} />
-          <span>{ errors.name } </span>
-          <label htmlFor="image">Image</label>
-          <input type="text" 
-                 name='image'
-                 value={dog.image}
-                 onChange={handelInputChange} />
-          <span>{ errors.image } </span>
-          <label htmlFor="life">Life Span</label>  
-          <input type="number" 
-                 name='minLife'
-                 value={dog.minLife}
-                 onChange={handelInputChange} />
-          <span>{ errors.minLife } </span>
-          - 
-          <input type="number" 
-                 name='maxLife' 
-                 value={dog.maxLife}
-                 onChange={handelInputChange} />
-          <span>{ errors.maxLife } </span>   
-        </div>
-        <div className={styles.content}>
-          <label htmlFor="height">Height</label>
-          <input type="number" 
-                 name='minHeight'
-                 value={dog.minHeight}
-                 onChange={handelInputChange} />
-          <span>{ errors.minHeight } </span>
-                 - 
-          <input type="number" 
-                name='maxHeight'
-                value={dog.maxHeight}
-                onChange={handelInputChange} />
-          <span>{ errors.namaxHeightme } </span>
+          
+          <div className={styles.inputs}>
+            <label htmlFor="name">Name</label>
+            <input type="text" name='name'value={dog.name} onChange={handelInputChange} />
+            <div className={styles.errorSpan}>
+              <span>{ errors.name } </span>
+            </div>
+          </div>
 
-          <label htmlFor="weight">Weight</label>
-          <input type="number" 
-                 name='minWeight'
-                 value={dog.minWeight}
-                 onChange={handelInputChange} />
-          <span>{ errors.minWeight } </span>
-                 - 
-          <input type="number" 
-                 name='maxWeight'
-                 value={dog.maxWeight}
-                 onChange={handelInputChange} />
-          <span>{ errors.maxWeight } </span>
-          <label htmlFor="temperament">Temperament</label>
-          <select name="temperament" onChange={handelInputChange}>
-            {allTemperaments.map((temperament, index) => (
-              <option key={index} value={temperament}>
-                {temperament}
-              </option>
-            ))}
-          </select>
-          <span>{ errors.temperament } </span>
-        </div>
-        <div>
+          <div className={`${styles.content} ${errors.image && styles.hasError}`}>
+            <label htmlFor="image">Image</label>
+            <input type="text" name='image' value={dog.image} onChange={handelInputChange} />
+            <div className={styles.errorSpan}>
+              <span>{ errors.image } </span>
+            </div>
+          </div>
+
+          <div className={styles.inputs}>
+            <label htmlFor="life">Life Span</label> 
+            <div className={styles.inputsNumber}>
+              <input type="number" name='minLife' value={dog.minLife} onChange={handelInputChange} />
+                - 
+              <input type="number" name='maxLife' value={dog.maxLife} onChange={handelInputChange} />
+            </div> 
+            <div className={styles.errorSpan}>
+              <span>{ errors.minLife } </span>
+              <span>{ errors.maxLife } </span>
+            </div>
+          </div>
+
+          <div className={styles.inputs}>
+            <label htmlFor="height">Height</label>
+            <div className={styles.inputsNumber}>
+              <input type="number" name='minHeight' value={dog.minHeight} onChange={handelInputChange} />
+                      - 
+              <input type="number" name='maxHeight' value={dog.maxHeight} onChange={handelInputChange} />
+            </div>
+            <div className={styles.errorSpan}>
+              <span>{ errors.minHeight } </span>
+              <span>{ errors.namaxHeightme } </span>
+            </div>
+          </div>
+
+          <div className={styles.inputs}>
+            <label htmlFor="weight">Weight</label>
+            <div className={styles.inputsNumber}>
+              <input type="number" name='minWeight' value={dog.minWeight} onChange={handelInputChange} />
+                      - 
+              <input type="number" name='maxWeight' value={dog.maxWeight} onChange={handelInputChange} />
+            </div>
+            <div className={styles.errorSpan}>
+              <span>{ errors.minWeight } </span>
+              <span>{ errors.maxWeight } </span>
+            </div>
+          </div>
+
+          <div className={styles.inputs}>
+            <label htmlFor="temperament">Temperament</label>
+            <select name="temperament" onChange={handelInputChange}>
+              {allTemperaments.map((temperament, index) => (
+                <option key={index} value={temperament}>
+                  {temperament}
+                </option>
+              ))}
+            </select>
+            <div className={styles.errorSpan}>
+              <span>{ errors.temperament } </span>
+            </div>
+          </div>
+          
           <label>Temperaments:</label>
           <ul>
             {selectedTemperaments.map((temperament, index) => (
               <li key={index}>{temperament}</li>
             ))}
           </ul>
+          
+          <button type="submit">Crear</button>
         </div>
-        <button type="submit">Crear</button>
       </form>
+      <div className={styles.card}>
+
+      </div>
+      
     </div>
   );
 };
