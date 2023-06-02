@@ -39,34 +39,48 @@ const NavBar = () => {
 
   }
 
-  if (location.pathname === '/home' || location.pathname === '/new') {
+  if (location.pathname !== '/landing') {
     return (
       <header className={styles.header}>
         <div className={styles.logo}>
           <img src={logo} alt="Logo" className={styles.logoImage} />
         </div>
         <nav className={styles.navbar}>
-          <input name='search' onChange={handleChange} type="text" placeholder="Buscar" className={styles.searchInput} />
-          <select name='temperament' onChange={handleChange} className={styles.select}>
-            <option value="">Filtrar por temperamento</option>
-            { allTemperaments.map((temperament, index) => (
-              <option key={index} value={temperament}>
-                {temperament}
-              </option>
-            )) }
-          </select>
-          <select name='order' onChange={handleChange} className={styles.select}>
-            <option value="asc">Ordenar A-Z</option>
-            <option value="desc">Ordenar Z-A</option>
-          </select>
-          <select name='oldNew' onChange={handleChange} className={styles.select}>
-            <option value="all">Todos</option>
-            <option value="new">Nuevos</option>
-            <option value="old">Viejos</option>
-          </select>
-          <Link to="/new" className={styles.link}>
-            Agregar nueva raza
-          </Link>
+          { location.pathname === '/home' &&
+            <>
+              <input name='search' onChange={handleChange} type="text" placeholder="Buscar" className={styles.searchInput} />
+              <select name='temperament' onChange={handleChange} className={styles.select}>
+                <option value="">Filtrar por temperamento</option>
+                { allTemperaments.map((temperament, index) => (
+                  <option key={index} value={temperament}>
+                    {temperament}
+                  </option>
+                )) }
+              </select>
+              <select name='order' onChange={handleChange} className={styles.select}>
+                <option value="asc">Ordenar A-Z</option>
+                <option value="desc">Ordenar Z-A</option>
+              </select>
+              <select name='oldNew' onChange={handleChange} className={styles.select}>
+                <option value="all">Todos</option>
+                <option value="new">Nuevos</option>
+                <option value="old">Viejos</option>
+              </select>
+            </>
+          }
+          {
+            location.pathname !== '/home' 
+              ? 
+                <Link to="/home" className={styles.link}>
+                  Volver a Home
+                </Link>
+              :
+                <Link to="/new" className={styles.link}>
+                  Agregar nueva raza
+                </Link>
+
+          }
+          
         </nav>
       </header>
     );
