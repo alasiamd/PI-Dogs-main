@@ -117,7 +117,7 @@ const NewDog = () => {
             <label htmlFor="image">Image</label>
             <input type="text" name='image' value={dog.image} onChange={handelInputChange} />
             <div className={styles.errorSpan}>
-              <span>{ errors.image } </span>
+              <span>{errors.image}</span>
             </div>
           </div>
 
