@@ -39,7 +39,7 @@ const NavBar = () => {
 
   }
 
-  if (location.pathname !== '/landing') {
+  if (location.pathname !== '/') {
     return (
       <header className={styles.header}>
         <div className={styles.logo}>
