@@ -8,7 +8,9 @@ import {
   ORDER,
   FILTER_OLD_NEW,
   FILTER_TEMPERAMENT,
+  FILTER_RESULTS,
 } from "./types";
+
 const initialState = {
   search: [], //
   searchId: [], //
@@ -17,11 +19,52 @@ const initialState = {
   createDogs: [], //
   filtered: [],
   filters: {
-    order: "",
-    oldNew: "",
-    temperament: "",
-    search: ""
+    order: null,
+    oldNew: null,
+    temperament: null,
+    search: null,
+  },
+};
+
+const filterResultsByCriteria = (filters, resultsToFilter) => {
+  let filterResults = resultsToFilter;
+  if (filters.search) {
+    filterResults = filterResults.filter((dog) =>
+      dog.name.toLowerCase().includes(filters.search.toLowerCase())
+    );
   }
+  if (filters.temperament) {
+    filterResults = filterResults.filter((dog) => {
+      return (
+        dog.temperament !== undefined &&
+        dog.temperament.includes(filters.temperament)
+      );
+    });
+  }
+  if (filters.order) {
+    filterResults.sort((a, b) => {
+      const nameA = a.name.toLowerCase();
+      const nameB = b.name.toLowerCase();
+
+      if (nameA > nameB) {
+        return filters.order === "asc" ? 1 : -1;
+      } else if (nameA < nameB) {
+        return filters.order === "desc" ? 1 : -1;
+      } else {
+        return 0;
+      }
+    });
+  }
+  if (filters.oldNew) {
+    if (filters.oldNew === "new") {
+      filterResults = filterResults.filter((dog) => dog.createdInDb);
+    }
+    if (filters.oldNew === "old") {
+      filterResults = filterResults.filter((dog) => !dog.createdInDb);
+    }
+  }
+
+  return filterResults;
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -31,6 +74,13 @@ const reducer = (state = initialState, { type, payload }) => {
 
     case SEARCHID:
       return { ...state, searchId: payload };
+
+    case FILTER_RESULTS:
+      return {
+        ...state,
+        filtered: filterResultsByCriteria(payload, state.all),
+        filters: payload,
+      };
 
     case SEARCH:
       return { ...state, search: payload, filtered: payload };

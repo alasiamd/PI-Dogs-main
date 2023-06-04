@@ -8,6 +8,7 @@ import {
   ORDER,
   FILTER_OLD_NEW,
   FILTER_TEMPERAMENT,
+  FILTER_RESULTS,
 } from "./types";
 
 const endpoint = "http://localhost:3001";
@@ -100,5 +101,12 @@ export function filterTemperament(temperament) {
   return {
     type: FILTER_TEMPERAMENT,
     payload: temperament,
+  };
+}
+
+export function filterResults(filters) {
+  return {
+    type: FILTER_RESULTS,
+    payload: filters,
   };
 }
