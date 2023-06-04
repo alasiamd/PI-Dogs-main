@@ -10,12 +10,18 @@ import {
   FILTER_TEMPERAMENT,
 } from "./types";
 const initialState = {
-  search: [],
-  searchId: [],
-  all: [],
-  temperaments: [],
-  createDogs: [],
+  search: [], //
+  searchId: [], //
+  all: [], //
+  temperaments: [], //
+  createDogs: [], //
   filtered: [],
+  filters: {
+    order: "",
+    oldNew: "",
+    temperament: "",
+    search: ""
+  }
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -54,16 +60,16 @@ const reducer = (state = initialState, { type, payload }) => {
     case FILTER_OLD_NEW:
       let filterOldNew;
       if (payload === "new") {
-        filterOldNew = state.all.filter((dog) => dog.createdInDb);
+        filterOldNew = state.filtered.filter((dog) => dog.createdInDb);
       } else if (payload === "old") {
-        filterOldNew = state.all.filter((dog) => !dog.createdInDb);
+        filterOldNew = state.filtered.filter((dog) => !dog.createdInDb);
       } else {
-        filterOldNew = state.all;
+        filterOldNew = state.filtered;
       }
       return { ...state, filtered: filterOldNew };
 
     case FILTER_TEMPERAMENT:
-      const temperamentFilter = [...state.all].filter((dog) => {
+      const temperamentFilter = [...state.filtered].filter((dog) => {
         return (
           dog.temperament !== undefined && dog.temperament.includes(payload)
         );

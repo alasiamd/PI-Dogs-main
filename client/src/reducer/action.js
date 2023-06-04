@@ -59,7 +59,6 @@ export const searchName = (name) => {
     return axios
       .get(`${endpoint}/dogs/?search=${name}`)
       .then(({ data }) => {
-        console.log(data);
         dispatch({
           type: SEARCH,
           payload: data,
