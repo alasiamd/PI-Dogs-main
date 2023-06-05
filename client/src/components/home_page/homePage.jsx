@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './homePage.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { all, filterOldNew, orderCards } from '../../reducer/action';
+import { all} from '../../reducer/action';
 import Card from '../card/card'
 // import { ALL } from '../../reducer/types';
 
@@ -25,6 +25,10 @@ const HomePage = () => {
     setCurrenCards(currentCards);
     console.log(currentCards);
   }, [currentPage, allReg])
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [allReg])
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
