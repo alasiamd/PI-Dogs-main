@@ -23,7 +23,6 @@ const HomePage = () => {
     const indexOfFirstCard = indexOfLastCard - cardsPerPage;
     const currentCards = allReg.slice(indexOfFirstCard, indexOfLastCard);
     setCurrenCards(currentCards);
-    console.log(currentCards);
   }, [currentPage, allReg])
 
   useEffect(() => {

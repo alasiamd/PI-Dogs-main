@@ -49,7 +49,6 @@ const getDB = async () => {
 const handlerGetDogs = async () => {
   const apiInfo = await getApi();
   const dbInfo = await getDB();
-  console.log(dbInfo);
   const total = apiInfo.concat(dbInfo);
   return total;
 };

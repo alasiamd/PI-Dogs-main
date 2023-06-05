@@ -96,7 +96,6 @@ const NewDog = () => {
     else {
       alert("Aun no puedes enviar la informacion");
     }
-    console.log(dogCreated)
   }
 
 
