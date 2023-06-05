@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import styles from './card.module.css';
 
 const Card = ({ id, image, life_span, name, temperament, weight, height, fromDetails }) => {
-  // console.log(image);
 
   const cardClassName = fromDetails ? styles.cardDetails : styles.cardHome;
   const buttonClassName = fromDetails ? styles.buttonDetails : styles.buttonHome;

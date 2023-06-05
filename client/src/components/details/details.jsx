@@ -14,7 +14,6 @@ const Details = () => {
   }, [dispatch, id]);
 
 const dogId = useSelector(state => state.searchId);
-console.log(dogId);
 const imagen = dogId.createdInDb ? dogId.image : dogId.reference_image_id;
   return (
     <div className={styles.card}>
