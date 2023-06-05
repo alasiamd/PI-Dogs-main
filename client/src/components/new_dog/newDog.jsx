@@ -180,7 +180,7 @@ const NewDog = () => {
             ))}
           </ul>
           
-          <button type="submit">Crear</button>
+          <button type="submit">Submit</button>
         </div>
       </form>
       <div className={styles.card}>

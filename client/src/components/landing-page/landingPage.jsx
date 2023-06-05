@@ -17,7 +17,7 @@ const LandingPage = () => {
       <div className={styles.content}>
         <h1 className={styles.title}>Welcome to Our Website</h1>
         <p className={styles.subtitle}>Discover the Fascinating World of Dogs</p>
-        <img src={lucy} alt="Representative Photo" className={styles.representativePhoto} />
+        <img src={lucy} alt="Representative_Photo" className={styles.representativePhoto} />
         <Link to="/home" className={styles.button}>Go to Home</Link>
       </div>
     </div>

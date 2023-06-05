@@ -99,19 +99,19 @@ const NavBar = (props) => {
                 name="search"
                 onChange={handleChange}
                 type="text"
-                placeholder="Buscar"
+                placeholder="Search"
                 className={styles.searchInput}
               />
               <div 
                 className={styles.reset} 
-                onClick={handleReset}>Limpiar</div>
+                onClick={handleReset}>Reset</div>
               <select
                 name="temperament"
                 onChange={handleChange}
                 className={styles.select}
               >
                 <option value="" selected={defaultSelected}>
-                  Filtrar por temperamento
+                  Filter by temperament
                 </option>
                 {allTemperaments.map((temperament, index) => (
                   <option key={index} value={temperament}>
@@ -124,17 +124,17 @@ const NavBar = (props) => {
                 onChange={handleChange}
                 className={styles.select}
               >
-                <option value="asc">Ordenar A-Z</option>
-                <option value="desc">Ordenar Z-A</option>
+                <option value="asc">Sort A-Z</option>
+                <option value="desc">Sort Z-A</option>
               </select>
               <select
                 name="oldNew"
                 onChange={handleChange}
                 className={styles.select}
               >
-                <option value="all">Todos</option>
-                <option value="new">Nuevos</option>
-                <option value="old">Viejos</option>
+                <option value="all">Origin</option>
+                <option value="new">New</option>
+                <option value="old">Old</option>
               </select>
             </>
           }
@@ -142,11 +142,11 @@ const NavBar = (props) => {
             location.pathname !== '/home' 
               ? 
                 <Link to="/home" className={styles.link}>
-                  Volver a Home
+                  Back to Home
                 </Link>
               :
                 <Link to="/new" className={styles.link}>
-                  Agregar nueva raza
+                  Add a new race
                 </Link>
           }
         </nav>
