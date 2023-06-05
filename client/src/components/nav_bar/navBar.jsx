@@ -101,6 +101,7 @@ const NavBar = (props) => {
                 type="text"
                 placeholder="Search"
                 className={styles.searchInput}
+                value={selectedFilters.search}
               />
               <div 
                 className={styles.reset} 
@@ -109,6 +110,7 @@ const NavBar = (props) => {
                 name="temperament"
                 onChange={handleChange}
                 className={styles.select}
+                value={selectedFilters.temperament}
               >
                 <option value="" selected={defaultSelected}>
                   Filter by temperament
@@ -123,7 +125,9 @@ const NavBar = (props) => {
                 name="order"
                 onChange={handleChange}
                 className={styles.select}
+                value={selectedFilters.order}
               >
+                <option>Ordenar A-Z/Z-A</option>
                 <option value="asc">Sort A-Z</option>
                 <option value="desc">Sort Z-A</option>
               </select>
@@ -131,6 +135,7 @@ const NavBar = (props) => {
                 name="oldNew"
                 onChange={handleChange}
                 className={styles.select}
+                value={selectedFilters.oldNew}
               >
                 <option value="all">Origin</option>
                 <option value="new">New</option>
